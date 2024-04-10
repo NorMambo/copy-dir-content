@@ -11,3 +11,4 @@ if __name__ == '__main__':
 
   for f in files:
     shutil.copy2(os.path.join(source_dir, f), dest_dir)
+    print(f'Copied {f}')
