@@ -10,9 +10,9 @@ def run_parser():
       prog='split_image_set.py',
       description='Split directory content into train and test data.'
     )
-  parser.add_argument('source_dir')
-  parser.add_argument('train_dir')
-  parser.add_argument('test_dir')
+  parser.add_argument('source_dir', type=str)
+  parser.add_argument('train_dir', type=str)
+  parser.add_argument('test_dir', type=str)
   parser.add_argument('train_percentage')
   args = parser.parse_args()
   return args
@@ -50,10 +50,14 @@ if __name__ == '__main__':
 
       if str(filename).endswith('.xml'):
         shutil.move(os.path.join(source_dir, filename), train_dir) # move the xml file
+        print(f'Moving {filename}')
         shutil.move(os.path.join(source_dir, no_extension_name + '.png'), train_dir) # move corresponding png
+        print(f'Moving {no_extension_name}.png')
       elif str(filename).endswith('.png'):
         shutil.move(os.path.join(source_dir, filename), train_dir) # move the png file
+        print(f'Moving {filename}')
         shutil.move(os.path.join(source_dir, no_extension_name + '.xml'), train_dir) # move corresponding xml
+        print(f'Moving {no_extension_name}.xml')
       i+=1
 
     remaining_files = os.listdir(source_dir)
